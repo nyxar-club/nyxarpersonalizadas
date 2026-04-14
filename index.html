@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+  <meta name="theme-color" content="#000000"/>
+  <meta name="apple-mobile-web-app-capable" content="yes"/>
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+  <title>NYXAR — Prendas Personalizadas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a class="nav-logo" href="#hero">NYXAR</a>
+    <div class="nav-links">
+      <a href="#configurador">Configurar</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-orb orb1"></div>
+    <div class="hero-orb orb2"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Colección Personalizada</p>
+      <h1 class="hero-title">NYXAR</h1>
+      <p class="hero-sub">Diseña tu prenda. Define tu identidad.</p>
+      <a href="#configurador" class="btn-primary">Cotizar Ahora</a>
+    </div>
+    <div class="hero-scroll"><span></span></div>
+  </section>
+
+  <!-- ===== CONFIGURADOR ===== -->
+  <section class="section configurador-section" id="configurador">
+    <div class="section-header">
+      <p class="label-top">Herramienta Premium</p>
+      <h2>Configurador <span class="accent">NYXAR</span></h2>
+    </div>
+
+    <div class="config-layout">
+
+      <!-- SIDEBAR CONTROLES -->
+      <aside class="config-sidebar">
+
+        <!-- TALLA -->
+        <div class="config-block">
+          <label class="config-label">Talla</label>
+          <div class="chip-group" id="grupTalla">
+            <button class="chip" data-val="XS" onclick="setTalla('XS',this)">XS</button>
+            <button class="chip active" data-val="S" onclick="setTalla('S',this)">S</button>
+            <button class="chip" data-val="M" onclick="setTalla('M',this)">M</button>
+            <button class="chip" data-val="L" onclick="setTalla('L',this)">L</button>
+            <button class="chip" data-val="XL" onclick="setTalla('XL',this)">XL</button>
+          </div>
+          <div class="medidas-grid">
+            <div class="medida-item"><span class="medida-label">Ancho</span><span class="medida-val" id="mAncho">54cm</span></div>
+            <div class="medida-item"><span class="medida-label">Largo</span><span class="medida-val" id="mLargo">70cm</span></div>
+            <div class="medida-item"><span class="medida-label">Hombro</span><span class="medida-val" id="mHombro">46cm</span></div>
+            <div class="medida-item"><span class="medida-label">Manga</span><span class="medida-val" id="mManga">21cm</span></div>
+          </div>
+        </div>
+
+        <!-- CORTE -->
+        <div class="config-block">
+          <label class="config-label">Corte</label>
+          <div class="chip-group" id="grupCorte">
+            <button class="chip active" data-val="regular" onclick="setCorte('regular',this)">Regular</button>
+            <button class="chip" data-val="oversize" onclick="setCorte('oversize',this)">Oversize</button>
+            <button class="chip" data-val="boxy" onclick="setCorte('boxy',this)">Boxy Fit</button>
+          </div>
+          <p class="corte-desc" id="corteDesc">Silueta limpia, ajuste estándar ideal para uso diario.</p>
+        </div>
+
+        <!-- COLOR -->
+        <div class="config-block">
+          <label class="config-label">Color</label>
+          <div class="color-row" id="grupColor">
+            <button class="color-dot active" data-val="black" onclick="setColor('black',this)" style="background:#111111" title="Negro">
+              <span class="color-check">✓</span>
+            </button>
+            <button class="color-dot" data-val="white" onclick="setColor('white',this)" style="background:#f0f0f0;border-color:#444" title="Blanco">
+              <span class="color-check" style="color:#111">✓</span>
+            </button>
+            <button class="color-dot" data-val="beige" onclick="setColor('beige',this)" style="background:#d6c3a3" title="Beige">
+              <span class="color-check" style="color:#333">✓</span>
+            </button>
+          </div>
+          <p class="color-name" id="colorName">Negro</p>
+        </div>
+
+        <!-- PRECIO -->
+        <div class="price-card">
+          <div class="price-rows">
+            <div class="price-row">
+              <span>Camisa</span>
+              <span id="pCamisa">$26</span>
+            </div>
+            <div class="price-row">
+              <span>Tamaño del diseño</span>
+              <span id="pDiseno">+$0</span>
+            </div>
+            <div class="price-row envio-row">
+              <span>Envío</span>
+              <span class="free-badge">GRATIS</span>
+            </div>
+          </div>
+          <div class="price-divider"></div>
+          <div class="price-total">
+            <span>Total</span>
+            <span class="total-num" id="pTotal">$26</span>
+          </div>
+
+          <!-- PREMIUM UPGRADE -->
+          <div class="premium-upgrade" id="premiumUpgrade">
+            <div class="premium-left">
+              <div class="premium-icon-wrap">
+                <img src="assets/icono-premium.png" alt="Premium" style="width:18px;height:18px;object-fit:contain;"/>
+              </div>
+              <div class="premium-text">
+                <strong>Paquete Premium</strong>
+                <small>Caja misteriosa + packaging exclusivo</small>
+              </div>
+            </div>
+            <button class="btn-upgrade" id="btnUpgrade" onclick="togglePremium()">+ $2.99</button>
+          </div>
+
+          <button class="btn-finalizar" onclick="finalizarPedido()">
+            <span>Finalizar pedido</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </aside><!-- fin sidebar -->
+
+      <!-- ÁREA DE CANVASES -->
+      <div class="canvases-col">
+
+        <!-- FRENTE -->
+        <div class="canvas-card" id="cardFront">
+          <div class="canvas-card-header">
+            <span class="side-badge">Frente</span>
+            <div class="canvas-controls">
+              <div class="ctrl-group">
+                <span class="ctrl-label">Tamaño del diseño</span>
+                <div class="chips-sm" id="dtfSizeFront">
+                  <button class="chip-xs" data-val="small" onclick="setDtfSize('front','small',this)">Pequeño</button>
+                  <button class="chip-xs active" data-val="medium" onclick="setDtfSize('front','medium',this)">Mediano</button>
+                  <button class="chip-xs" data-val="large" onclick="setDtfSize('front','large',this)">Grande</button>
+                </div>
+              </div>
+              <div class="ctrl-group">
+                <span class="ctrl-label">Ubicación</span>
+                <select class="ctrl-select" id="locationFront" onchange="setLocation('front',this.value)">
+                  <option value="center">Centro del pecho</option>
+                  <option value="left">Pecho izquierdo</option>
+                  <option value="right">Pecho derecho</option>
+                  <option value="full">Toda la superficie</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="shirt-canvas" id="canvasFront">
+            <img class="shirt-base" id="shirtImgFront" src="" alt="Frente"/>
+            <div class="design-layer" id="layerFront">
+              <div class="design-wrap" id="wrapFront" style="display:none">
+                <img class="design-img" id="designFront" src="" alt="Diseño" draggable="false"/>
+                <button class="handle rotate-h" id="rotateFront" title="Rotar">↻</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="canvas-footer-btns">
+            <label class="btn-upload-file" for="fileFront">⬆ Subir diseño</label>
+            <input type="file" id="fileFront" accept="image/*" hidden onchange="uploadDesign('front',event)"/>
+            <button class="btn-clear" onclick="clearDesign('front')">↺ Limpiar</button>
+          </div>
+        </div><!-- fin FRENTE -->
+
+        <!-- ATRÁS -->
+        <div class="canvas-card" id="cardBack">
+          <div class="canvas-card-header">
+            <span class="side-badge">Atrás</span>
+            <div class="canvas-controls">
+              <div class="ctrl-group">
+                <span class="ctrl-label">Tamaño del diseño</span>
+                <div class="chips-sm" id="dtfSizeBack">
+                  <button class="chip-xs" data-val="small" onclick="setDtfSize('back','small',this)">Pequeño</button>
+                  <button class="chip-xs active" data-val="medium" onclick="setDtfSize('back','medium',this)">Mediano</button>
+                  <button class="chip-xs" data-val="large" onclick="setDtfSize('back','large',this)">Grande</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="shirt-canvas" id="canvasBack">
+            <img class="shirt-base" id="shirtImgBack" src="" alt="Atrás"/>
+            <div class="design-layer" id="layerBack">
+              <div class="design-wrap" id="wrapBack" style="display:none">
+                <img class="design-img" id="designBack" src="" alt="Diseño" draggable="false"/>
+                <button class="handle rotate-h" id="rotateBack" title="Rotar">↻</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="canvas-footer-btns">
+            <label class="btn-upload-file" for="fileBack">⬆ Subir diseño</label>
+            <input type="file" id="fileBack" accept="image/*" hidden onchange="uploadDesign('back',event)"/>
+            <button class="btn-clear" onclick="clearDesign('back')">↺ Limpiar</button>
+          </div>
+        </div><!-- fin ATRÁS -->
+
+      </div><!-- fin canvases-col -->
+    </div><!-- fin config-layout -->
+  </section>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-logo">NYXAR</div>
+    <p>Prendas personalizadas · Calidad premium</p>
+    <p class="footer-copy">© 2025 NYXAR — Todos los derechos reservados</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
